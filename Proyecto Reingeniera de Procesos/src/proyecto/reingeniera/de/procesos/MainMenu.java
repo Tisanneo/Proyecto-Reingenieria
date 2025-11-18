@@ -40,13 +40,15 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
+        setBackground(new java.awt.Color(0, 0, 204));
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("HP Simplified", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sistema Bancario");
 
-        CrearCuentaBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        CrearCuentaBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         CrearCuentaBtn.setText("Crear cuenta");
         CrearCuentaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,7 +56,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        CerrarCuentaBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        CerrarCuentaBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         CerrarCuentaBtn.setText("Cerrar Cuenta");
         CerrarCuentaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +64,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        ModifCuentaBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ModifCuentaBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         ModifCuentaBtn.setText("Modificar Cuenta");
         ModifCuentaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +72,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        DepositarBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        DepositarBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         DepositarBtn.setText("Depositar");
         DepositarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +80,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        RetirarBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        RetirarBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         RetirarBtn.setText("Retirar");
         RetirarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +88,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        TransferirBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        TransferirBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         TransferirBtn.setText("Transferir");
         TransferirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +96,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        ConsultCuentasBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ConsultCuentasBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         ConsultCuentasBtn.setText("Consulta cuentas");
         ConsultCuentasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +104,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        BuscarBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BuscarBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         BuscarBtn.setText("Buscar por id");
         BuscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +112,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        HdesactivadasBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        HdesactivadasBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         HdesactivadasBtn.setText("H. desactivadas");
         HdesactivadasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +120,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        HActivasBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        HActivasBtn.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         HActivasBtn.setText("Historial activas");
         HActivasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,11 +133,10 @@ public class MainMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(DepositarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CrearCuentaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,22 +149,25 @@ public class MainMenu extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(RetirarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(TransferirBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(TransferirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BuscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(HdesactivadasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ConsultCuentasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(HdesactivadasBtn)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(ConsultCuentasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(HActivasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(HActivasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CrearCuentaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CerrarCuentaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,7 +184,7 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(HActivasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addComponent(HdesactivadasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
