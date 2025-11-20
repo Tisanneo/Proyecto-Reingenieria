@@ -6,6 +6,7 @@ package proyecto.reingeniera.de.procesos;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 import static proyecto.reingeniera.de.procesos.GestorCuentas.buscarCuenta;
 
 /**
@@ -60,6 +61,14 @@ public class buscarCuenta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     private void cargarDatos() {
+    String data1 = cuenta.getId();
+    String data2 = cuenta.getNombreCliente();
+    double data3 = cuenta.getSaldo();
+    Object[] row = { data1, data2, data3 };
+    
+    DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+    model.setRowCount(0);
+    model.addRow(row);
            }
 
     /**
@@ -148,6 +157,11 @@ public class buscarCuenta extends javax.swing.JFrame {
             }
         ));
         jScrollPane3.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setHeaderValue("Id");
+            jTable2.getColumnModel().getColumn(1).setHeaderValue("Nombre");
+            jTable2.getColumnModel().getColumn(2).setHeaderValue("Saldo");
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,8 +196,8 @@ public class buscarCuenta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
