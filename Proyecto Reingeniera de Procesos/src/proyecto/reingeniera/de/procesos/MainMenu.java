@@ -4,6 +4,8 @@
  */
 package proyecto.reingeniera.de.procesos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Tisan
@@ -201,7 +203,8 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_CerrarCuentaBtnActionPerformed
 
     private void ModifCuentaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifCuentaBtnActionPerformed
-        // TODO add your handling code here:
+        modificarCuenta modCuenta = new modificarCuenta();
+        modCuenta.setVisible(true);
     }//GEN-LAST:event_ModifCuentaBtnActionPerformed
 
     private void DepositarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositarBtnActionPerformed

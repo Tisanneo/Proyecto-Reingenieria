@@ -38,7 +38,7 @@ public class GestorCuentas {
     /**
      * Guarda la lista completa de cuentas en el archivo "cuentas.dat".
      */
-    private static synchronized void guardarCuentas(ArrayList<Cuenta> cuentas) throws IOException {
+    static synchronized void guardarCuentas(ArrayList<Cuenta> cuentas) throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_CUENTAS))) {
             oos.writeObject(cuentas);
         }
