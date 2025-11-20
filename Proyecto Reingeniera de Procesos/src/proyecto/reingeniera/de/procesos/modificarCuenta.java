@@ -27,7 +27,7 @@ public class modificarCuenta extends javax.swing.JFrame {
         initComponents();
         String idBuscar = JOptionPane.showInputDialog(null, "Ingrese el ID de la cuenta a modificar:",JOptionPane.QUESTION_MESSAGE);
         if (idBuscar == null || idBuscar.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Error.");
+            JOptionPane.showMessageDialog(null, "Se ha cancelado la accion.");
             this.dispose();
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             cierreForzado();
@@ -86,7 +86,7 @@ public class modificarCuenta extends javax.swing.JFrame {
         }
     }
     
-    private void cierreForzado() { //Unico comentario mio, no queria cerrarse y no se proque, asi que le pedi a chatgpt que me diera esto, espero que funcione bien.
+    private void cierreForzado() { //no queria cerrarse y no se proque, asi que le pedi a chatgpt que me diera esto, espero que funcione bien.
     if (cuenta == null) {
         SwingUtilities.invokeLater(() -> this.dispose());
     }
