@@ -220,7 +220,8 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_TransferirBtnActionPerformed
 
     private void ConsultCuentasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultCuentasBtnActionPerformed
-        // TODO add your handling code here:
+        ConsultarCuentasFrame frameConsulta = new ConsultarCuentasFrame();
+        frameConsulta.setVisible(true);
     }//GEN-LAST:event_ConsultCuentasBtnActionPerformed
 
     private void BuscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarBtnActionPerformed
