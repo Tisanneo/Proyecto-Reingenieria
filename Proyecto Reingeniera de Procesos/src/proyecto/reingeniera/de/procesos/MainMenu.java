@@ -224,7 +224,8 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_ConsultCuentasBtnActionPerformed
 
     private void BuscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarBtnActionPerformed
-        // TODO add your handling code here:
+        buscarCuenta b = new buscarCuenta();
+        b.setVisible(true);
     }//GEN-LAST:event_BuscarBtnActionPerformed
 
     private void HdesactivadasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HdesactivadasBtnActionPerformed
