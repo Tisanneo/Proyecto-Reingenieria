@@ -208,7 +208,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_ModifCuentaBtnActionPerformed
 
     private void DepositarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositarBtnActionPerformed
-        // TODO add your handling code here:
+        DepositarDinero.depositar();
     }//GEN-LAST:event_DepositarBtnActionPerformed
 
     private void RetirarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarBtnActionPerformed
