@@ -212,11 +212,11 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_DepositarBtnActionPerformed
 
     private void RetirarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarBtnActionPerformed
-        // TODO add your handling code here:
+        Retirardinero.retirar();
     }//GEN-LAST:event_RetirarBtnActionPerformed
 
     private void TransferirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferirBtnActionPerformed
-        // TODO add your handling code here:
+        transferirDinero.transferir();
     }//GEN-LAST:event_TransferirBtnActionPerformed
 
     private void ConsultCuentasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultCuentasBtnActionPerformed
