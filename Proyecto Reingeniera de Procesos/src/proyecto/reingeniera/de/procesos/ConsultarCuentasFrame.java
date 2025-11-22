@@ -19,7 +19,11 @@ public class ConsultarCuentasFrame extends javax.swing.JFrame {
     public ConsultarCuentasFrame() {
         initComponents();
         this.setLocationRelativeTo(null); // Centrar ventana
-        
+        if (GestorCuentas.cargarCuentas().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No hay cuentas registradas en el sistema.");
+        this.dispose();
+        return;
+}
         // PRC-101: Programar la lógica para poblar la tabla al iniciar
         cargarDatosEnTabla();
     }
