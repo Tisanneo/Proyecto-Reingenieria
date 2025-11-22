@@ -186,6 +186,10 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
                 buscarBtnActionPerformed(null);
             }
         }
+        if (respuesta == JOptionPane.NO_OPTION) {
+    JOptionPane.showMessageDialog(this, "No se elimino cuenta");
+    return;
+}
     }                                           
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            

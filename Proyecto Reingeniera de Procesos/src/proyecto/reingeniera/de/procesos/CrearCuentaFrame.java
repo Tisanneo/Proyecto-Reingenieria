@@ -141,7 +141,14 @@ public class CrearCuentaFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El saldo debe ser un número válido (ej. 1500.50).", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        if (saldo == 0) {
+        JOptionPane.showMessageDialog(this, "No puede crear cuenta con 0 de saldo");
+        return;
+        }
+        if (!nombre.matches("[a-zA-Z ]+")) {
+        JOptionPane.showMessageDialog(this, "No se puede ingresar numeros en el nombre");
+    return;
+}
         // Si todas las validaciones pasan, llamamos al Gestor
         try {
             // Aquí se ejecuta la lógica de PRC-24, 25, 26, 28
