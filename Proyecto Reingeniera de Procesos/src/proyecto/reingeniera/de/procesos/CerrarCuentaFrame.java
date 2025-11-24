@@ -8,10 +8,8 @@ import javax.swing.JOptionPane;
 
 public class CerrarCuentaFrame extends javax.swing.JFrame {
 
-    // Variable para guardar la cuenta que encontramos
     private Cuenta cuentaEncontrada = null;
     
-    // Variables de UI (generadas por NetBeans)
     private javax.swing.JButton buscarBtn;
     private javax.swing.JButton cancelarBtn;
     private javax.swing.JButton eliminarBtn;
@@ -21,16 +19,12 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea infoArea;
 
-    /**
-     * Creates new form CerrarCuentaFrame
-     */
     public CerrarCuentaFrame() {
         initComponents();
-        this.setLocationRelativeTo(null); // Centrar la ventana
+        this.setLocationRelativeTo(null); 
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    @SuppressWarnings("unchecked")                   
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -45,14 +39,14 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cerrar Cuenta");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cerrar Cuenta Bancaria");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); 
         jLabel2.setText("ID de la Cuenta:");
 
-        idField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        idField.setFont(new java.awt.Font("Segoe UI", 0, 14)); 
 
         buscarBtn.setText("Buscar");
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -66,9 +60,9 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
         infoArea.setRows(5);
         jScrollPane1.setViewportView(infoArea);
 
-        eliminarBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        eliminarBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
         eliminarBtn.setText("Eliminar Cuenta");
-        eliminarBtn.setEnabled(false); // Inicia deshabilitado
+        eliminarBtn.setEnabled(false); 
         eliminarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarBtnActionPerformed(evt);
@@ -82,7 +76,6 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
             }
         });
 
-        // --- Layout (código autogenerado por NetBeans) ---
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,10 +116,8 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         pack();
-    }// </editor-fold>                        
+    }                     
 
-    // --- LÓGICA DE LOS BOTONES ---
-    
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String id = idField.getText().trim();
         if (id.isEmpty()) {
@@ -134,22 +125,19 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
             return;
         }
 
-        // Usamos el nuevo método de GestorCuentas
         cuentaEncontrada = GestorCuentas.buscarCuenta(id);
 
         if (cuentaEncontrada != null) {
-            // PRC-33: Programar la lógica para mostrar la información de la cuenta
             infoArea.setText("CUENTA ENCONTRADA:\n\n" +
                              "ID Cliente: \t" + cuentaEncontrada.getId() + "\n" +
                              "Nombre: \t" + cuentaEncontrada.getNombreCliente() + "\n" +
                              "Saldo Actual: \t$" + cuentaEncontrada.getSaldo());
             
-            // Activamos el botón de eliminar
             eliminarBtn.setEnabled(true);
         } else {
             infoArea.setText("No se encontró ninguna cuenta con el ID: " + id);
-            cuentaEncontrada = null; // Limpiamos la variable
-            eliminarBtn.setEnabled(false); // Desactivamos el botón
+            cuentaEncontrada = null; 
+            eliminarBtn.setEnabled(false); 
         }
     }                                         
 
@@ -159,7 +147,6 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
             return;
         }
 
-        // PRC-35: Diseñar la ventana de confirmación
         int respuesta = JOptionPane.showConfirmDialog(
                 this, 
                 "¿Está seguro de que desea eliminar la cuenta de '" + cuentaEncontrada.getNombreCliente() + "'?\n" +
@@ -171,18 +158,13 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
         
         if (respuesta == JOptionPane.YES_OPTION) {
             try {
-                // Si el usuario confirma, llamamos al método del gestor
-                // Este método ya incluye las validaciones (PRC-34, 36, 37)
                 GestorCuentas.eliminarCuenta(cuentaEncontrada.getId());
                 
                 JOptionPane.showMessageDialog(this, "Cuenta eliminada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose(); // Cierra la ventana de "Cerrar Cuenta"
+                this.dispose();
                 
             } catch (Exception e) {
-                // Captura el error (ej. si tiene saldo) (PRC-36)
                 JOptionPane.showMessageDialog(this, "Error al eliminar:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                
-                // Refrescamos la info por si el saldo cambió
                 buscarBtnActionPerformed(null);
             }
         }
@@ -193,6 +175,6 @@ public class CerrarCuentaFrame extends javax.swing.JFrame {
     }                                           
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        this.dispose(); // Cierra esta ventana
+        this.dispose(); 
     }
 }

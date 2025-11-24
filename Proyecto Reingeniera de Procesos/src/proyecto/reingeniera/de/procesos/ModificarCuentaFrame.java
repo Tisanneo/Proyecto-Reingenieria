@@ -9,8 +9,7 @@ import javax.swing.JOptionPane;
 public class ModificarCuentaFrame extends javax.swing.JFrame {
 
     private Cuenta cuentaActual = null;
-
-    // Componentes UI
+    
     private javax.swing.JButton buscarBtn;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JButton cancelarBtn;
@@ -18,11 +17,11 @@ public class ModificarCuentaFrame extends javax.swing.JFrame {
     private javax.swing.JTextField nombreActualField;
     private javax.swing.JTextField saldoField;
     private javax.swing.JTextField nuevoNombreField;
-    private javax.swing.JLabel jLabel1;     // Título
-    private javax.swing.JLabel jLabelID;    // Etiqueta ID
-    private javax.swing.JLabel jLabelNom;   // Etiqueta Nombre Actual
-    private javax.swing.JLabel jLabelSaldo; // Etiqueta Saldo
-    private javax.swing.JLabel jLabelNuevo; // Etiqueta Nuevo Nombre
+    private javax.swing.JLabel jLabel1;   
+    private javax.swing.JLabel jLabelID;    
+    private javax.swing.JLabel jLabelNom;   
+    private javax.swing.JLabel jLabelSaldo;
+    private javax.swing.JLabel jLabelNuevo;
 
     public ModificarCuentaFrame() {
         initComponents();
@@ -30,7 +29,6 @@ public class ModificarCuentaFrame extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -62,22 +60,21 @@ public class ModificarCuentaFrame extends javax.swing.JFrame {
         buscarBtn.addActionListener(evt -> buscarBtnActionPerformed(evt));
 
         jLabelNom.setText("Nombre Actual:");
-        nombreActualField.setEditable(false); // PRC-30: Solo lectura
+        nombreActualField.setEditable(false); 
 
         jLabelSaldo.setText("Saldo Actual:");
-        saldoField.setEditable(false);        // Solo lectura
+        saldoField.setEditable(false);        
 
         jLabelNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); 
-        jLabelNuevo.setText("Nuevo Nombre:"); // PRC-30: Este sí será editable
+        jLabelNuevo.setText("Nuevo Nombre:"); 
 
         guardarBtn.setText("Guardar Cambios");
-        guardarBtn.setEnabled(false); // Desactivado hasta que se busque
+        guardarBtn.setEnabled(false); 
         guardarBtn.addActionListener(evt -> guardarBtnActionPerformed(evt));
 
         cancelarBtn.setText("Cancelar");
         cancelarBtn.addActionListener(evt -> this.dispose());
 
-        // --- Layout (Ajustar en NetBeans Design si es necesario) ---
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,9 +133,7 @@ public class ModificarCuentaFrame extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         pack();
-    }// </editor-fold>                        
-
-    // --- LÓGICA ---
+    }                     
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String id = idField.getText().trim();
@@ -147,14 +142,13 @@ public class ModificarCuentaFrame extends javax.swing.JFrame {
             return;
         }
 
-        // PRC-29: Buscar la cuenta para editar
         cuentaActual = GestorCuentas.buscarCuenta(id);
 
         if (cuentaActual != null) {
             nombreActualField.setText(cuentaActual.getNombreCliente());
             saldoField.setText(String.valueOf(cuentaActual.getSaldo()));
-            nuevoNombreField.setText(""); // Limpiar campo de nuevo nombre
-            guardarBtn.setEnabled(true);  // Habilitar botón de guardar
+            nuevoNombreField.setText(""); 
+            guardarBtn.setEnabled(true);  
         } else {
             JOptionPane.showMessageDialog(this, "Cuenta no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
             limpiarCampos();
@@ -164,13 +158,11 @@ public class ModificarCuentaFrame extends javax.swing.JFrame {
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String nuevoNombre = nuevoNombreField.getText().trim();
 
-        // PRC-56: Validación de entrada (nombre no vacío)
         if (nuevoNombre.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El nuevo nombre no puede estar vacío.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // PRC-54: Diseñar la ventana de confirmación
         int confirm = JOptionPane.showConfirmDialog(this, 
                 "¿Está seguro de cambiar el nombre de:\n'" + cuentaActual.getNombreCliente() + "'\na\n'" + nuevoNombre + "'?",
                 "Confirmar Modificación",
@@ -178,11 +170,10 @@ public class ModificarCuentaFrame extends javax.swing.JFrame {
 
         if (confirm == JOptionPane.YES_OPTION) {
             try {
-                // PRC-55: Lógica para guardar el nuevo nombre
                 GestorCuentas.modificarNombreCuenta(cuentaActual.getId(), nuevoNombre);
                 
                 JOptionPane.showMessageDialog(this, "Nombre modificado exitosamente.");
-                this.dispose(); // Cerrar ventana al terminar
+                this.dispose(); 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al guardar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }

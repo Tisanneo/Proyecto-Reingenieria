@@ -77,7 +77,7 @@ public class TransferirFrame extends javax.swing.JFrame {
         jLabelDestino.setFont(new java.awt.Font("Segoe UI", 1, 12));
         jLabelDestino.setText("ID Cuenta Destino:");
         verificarDestinoBtn.setText("Verificar");
-        verificarDestinoBtn.setEnabled(false); // Deshabilitado hasta tener origen
+        verificarDestinoBtn.setEnabled(false); 
         verificarDestinoBtn.addActionListener(evt -> verificarDestinoBtnActionPerformed(evt));
         
         infoDestinoLabel.setText("---");
@@ -89,14 +89,12 @@ public class TransferirFrame extends javax.swing.JFrame {
 
         transferirBtn.setFont(new java.awt.Font("Segoe UI", 1, 14));
         transferirBtn.setText("Realizar Transferencia");
-        transferirBtn.setEnabled(false); // Deshabilitado hasta verificar todo
+        transferirBtn.setEnabled(false);
         transferirBtn.addActionListener(evt -> transferirBtnActionPerformed(evt));
 
         cancelarBtn.setText("Cancelar");
         cancelarBtn.addActionListener(evt -> this.dispose());
 
-        // --- LAYOUT MANUAL (Simplificado para copiar/pegar) ---
-        // Nota: Si usas el diseñador de NetBeans, solo arrastra los elementos.
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,19 +161,16 @@ public class TransferirFrame extends javax.swing.JFrame {
             return;
         }
 
-        // Buscamos solo para verificar que existe (PRC-74)
         Cuenta cDest = GestorCuentas.buscarCuenta(idDest);
 
         if (cDest != null) {
             infoDestinoLabel.setText("Destinatario: " + cDest.getNombreCliente());
             infoDestinoLabel.setForeground(new Color(0, 100, 0));
-            // Todo listo, habilitamos transferencia
             destinoVerificado = true;
             transferirBtn.setEnabled(true);
             idDestinoField.setEditable(false);
             verificarDestinoBtn.setEnabled(false);
         } else {
-            // PRC-75: Mensaje Cuenta destino no encontrada
             infoDestinoLabel.setText("Cuenta destino no existe");
             infoDestinoLabel.setForeground(Color.RED);
             JOptionPane.showMessageDialog(this, "La cuenta destino no existe en el sistema.");
@@ -187,24 +182,20 @@ public class TransferirFrame extends javax.swing.JFrame {
 
         String montoStr = montoField.getText().trim();
         try {
-            // PRC-76: Validación de entrada (cantidad)
             double monto = Double.parseDouble(montoStr);
             if (monto <= 0) {
                 JOptionPane.showMessageDialog(this, "El monto debe ser positivo.", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            // Llamada al Gestor (PRC-77)
             GestorCuentas.transferir(cuentaOrigen.getId(), idDestinoField.getText().trim(), monto);
 
-            // PRC-78: Mensaje de 'Transferencia exitosa'
             JOptionPane.showMessageDialog(this, "¡Transferencia realizada con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese un monto válido.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            // Aquí capturamos Saldo Insuficiente (PRC-73) o errores de destino
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Fallo en Transferencia", JOptionPane.ERROR_MESSAGE);
         }
     }

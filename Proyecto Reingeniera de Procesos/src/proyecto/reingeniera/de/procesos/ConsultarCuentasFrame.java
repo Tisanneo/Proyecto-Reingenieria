@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class ConsultarCuentasFrame extends javax.swing.JFrame {
 
-    // Componentes de la UI
     private javax.swing.JButton cerrarBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -18,50 +17,40 @@ public class ConsultarCuentasFrame extends javax.swing.JFrame {
 
     public ConsultarCuentasFrame() {
         initComponents();
-        this.setLocationRelativeTo(null); // Centrar ventana
+        this.setLocationRelativeTo(null); 
         if (GestorCuentas.cargarCuentas().isEmpty()) {
         JOptionPane.showMessageDialog(this, "No hay cuentas registradas en el sistema.");
         this.dispose();
         return;
 }
-        // PRC-101: Programar la lógica para poblar la tabla al iniciar
         cargarDatosEnTabla();
     }
 
-    /**
-     * Método para cargar los datos en la tabla (Cumple PRC-99, PRC-101 y PRC-102)
-     */
     private void cargarDatosEnTabla() {
-        // 1. Definimos las columnas de la tabla
         String[] columnas = {"ID Cuenta", "Nombre Cliente", "Saldo ($)"};
         
-        // Creamos un modelo de tabla que NO permita editar las celdas (solo lectura)
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Hace que la tabla no sea editable
+                return false; 
             }
         };
-        
-        // 2. PRC-99: Obtenemos TODAS las cuentas usando nuestro Gestor
+     
         ArrayList<Cuenta> listaCuentas = GestorCuentas.cargarCuentas();
 
-        // 3. PRC-102: Programar el caso de 'No hay cuentas'
         if (listaCuentas.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay cuentas registradas en el sistema.", "Información", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            // 4. PRC-101: Poblar la tabla con los datos
             for (Cuenta c : listaCuentas) {
                 Object[] fila = {
                     c.getId(),
                     c.getNombreCliente(),
-                    String.format("%.2f", c.getSaldo()) // Formato a 2 decimales
+                    String.format("%.2f", c.getSaldo()) 
                 };
                 modelo.addRow(fila);
             }
         }
         
-        // Asignamos el modelo lleno a la tabla visual
         tablaCuentas.setModel(modelo);
     }
 

@@ -23,16 +23,13 @@ public class BuscarCuentaFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); // Centrar ventana
         inicializarTablaVacia();
     }
-
-    /**
-     * Configura la tabla inicialmente vacía.
-     */
+    
     private void inicializarTablaVacia() {
         String[] columnas = {"ID Cuenta", "Nombre Cliente", "Saldo ($)"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Tabla de solo lectura
+                return false; 
             }
         };
         tablaResultados.setModel(modelo);
@@ -53,7 +50,6 @@ public class BuscarCuentaFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Cuenta por ID");
 
-        // PRC-90: Diseñar la UI para la búsqueda
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Búsqueda de Cuenta");
@@ -81,7 +77,6 @@ public class BuscarCuentaFrame extends javax.swing.JFrame {
             }
         });
 
-        // Layout básico
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,8 +114,6 @@ public class BuscarCuentaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    // --- LÓGICA DE LOS BOTONES ---
-
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String id = idField.getText().trim();
         
@@ -129,16 +122,12 @@ public class BuscarCuentaFrame extends javax.swing.JFrame {
             return;
         }
 
-        // Limpiamos la tabla antes de buscar (para que no se acumulen resultados anteriores)
         inicializarTablaVacia();
         DefaultTableModel modelo = (DefaultTableModel) tablaResultados.getModel();
 
-        // PRC-92: Programar la lógica de búsqueda por ID
-        // Usamos el método que ya creamos en GestorCuentas
         Cuenta cuentaEncontrada = GestorCuentas.buscarCuenta(id);
 
         if (cuentaEncontrada != null) {
-            // PRC-94: Programar la lógica para mostrar resultados en una tabla
             Object[] fila = {
                 cuentaEncontrada.getId(),
                 cuentaEncontrada.getNombreCliente(),
@@ -146,7 +135,6 @@ public class BuscarCuentaFrame extends javax.swing.JFrame {
             };
             modelo.addRow(fila);
         } else {
-            // PRC-95: Programar el mensaje de 'Cuenta no encontrada'
             JOptionPane.showMessageDialog(this, "No se encontró ninguna cuenta con el ID: " + id, "Sin Resultados", JOptionPane.INFORMATION_MESSAGE);
         }
     }                                         

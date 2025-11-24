@@ -10,7 +10,6 @@ public class DepositarFrame extends javax.swing.JFrame {
 
     private Cuenta cuentaActual = null;
 
-    // Componentes UI
     private javax.swing.JButton buscarBtn;
     private javax.swing.JButton depositarBtn;
     private javax.swing.JButton cancelarBtn;
@@ -18,7 +17,7 @@ public class DepositarFrame extends javax.swing.JFrame {
     private javax.swing.JTextField montoField;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelId;
-    private javax.swing.JLabel jLabelInfo; // Para mostrar nombre y saldo actual
+    private javax.swing.JLabel jLabelInfo; 
     private javax.swing.JLabel jLabelMonto;
 
     public DepositarFrame() {
@@ -26,8 +25,7 @@ public class DepositarFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    @SuppressWarnings("unchecked")           
     private void initComponents() {
 
         jLabelTitle = new javax.swing.JLabel();
@@ -51,7 +49,6 @@ public class DepositarFrame extends javax.swing.JFrame {
         buscarBtn.setText("Buscar");
         buscarBtn.addActionListener(evt -> buscarBtnActionPerformed(evt));
 
-        // Etiqueta informativa
         jLabelInfo.setFont(new java.awt.Font("Segoe UI", 2, 12)); 
         jLabelInfo.setForeground(new java.awt.Color(0, 102, 204));
         jLabelInfo.setText("Ingrese ID para buscar cuenta...");
@@ -61,13 +58,12 @@ public class DepositarFrame extends javax.swing.JFrame {
         jLabelMonto.setText("Monto a Depositar ($):");
 
         depositarBtn.setText("Confirmar Depósito");
-        depositarBtn.setEnabled(false); // Deshabilitado hasta encontrar cuenta
+        depositarBtn.setEnabled(false); 
         depositarBtn.addActionListener(evt -> depositarBtnActionPerformed(evt));
 
         cancelarBtn.setText("Cancelar");
         cancelarBtn.addActionListener(evt -> this.dispose());
 
-        // --- Layout (Simplificado) ---
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,9 +112,9 @@ public class DepositarFrame extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         pack();
-    }// </editor-fold>                        
+    }                    
 
-    // --- LÓGICA ---
+   
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String id = idField.getText().trim();
@@ -127,14 +123,12 @@ public class DepositarFrame extends javax.swing.JFrame {
             return;
         }
 
-        // PRC-62: Lógica para buscar cuenta
         cuentaActual = GestorCuentas.buscarCuenta(id);
 
         if (cuentaActual != null) {
             jLabelInfo.setText(" Cliente: " + cuentaActual.getNombreCliente() + " | Saldo: $" + cuentaActual.getSaldo());
-            depositarBtn.setEnabled(true); // Habilitamos el botón de depósito
+            depositarBtn.setEnabled(true); 
         } else {
-            // PRC-63: Mensaje de error 'Cuenta no existe'
             jLabelInfo.setText(" Cuenta no encontrada.");
             depositarBtn.setEnabled(false);
             JOptionPane.showMessageDialog(this, "No existe cuenta con ese ID.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -145,7 +139,6 @@ public class DepositarFrame extends javax.swing.JFrame {
         String montoStr = montoField.getText().trim();
         
         try {
-            // PRC-64: Validación de entrada (cantidad)
             double monto = Double.parseDouble(montoStr);
             
             if (monto <= 0) {
@@ -153,10 +146,8 @@ public class DepositarFrame extends javax.swing.JFrame {
                 return;
             }
 
-            // Llamada al Gestor (PRC-65 y PRC-116)
             GestorCuentas.depositar(cuentaActual.getId(), monto);
 
-            // PRC-66: Mensaje de 'Depósito exitoso'
             JOptionPane.showMessageDialog(this, "¡Depósito realizado con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
 

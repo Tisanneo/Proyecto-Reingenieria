@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 public class CrearCuentaFrame extends javax.swing.JFrame {
 
-    // Variables de la UI generadas por NetBeans
     private javax.swing.JButton guardarBtn;
     private javax.swing.JButton cancelarBtn;
     private javax.swing.JLabel jLabel1;
@@ -19,7 +18,6 @@ public class CrearCuentaFrame extends javax.swing.JFrame {
 
     public CrearCuentaFrame() {
         initComponents();
-        // Centra la ventana al aparecer
         this.setLocationRelativeTo(null); 
     }
 
@@ -37,17 +35,17 @@ public class CrearCuentaFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Nueva Cuenta");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Crear Nueva Cuenta");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); 
         jLabel2.setText("Nombre del Cliente:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); 
         jLabel3.setText("Saldo Inicial:");
 
-        guardarBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        guardarBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); 
         guardarBtn.setText("Guardar");
         
         
@@ -64,8 +62,6 @@ public class CrearCuentaFrame extends javax.swing.JFrame {
             }
         });
 
-        // --- Layout (código de NetBeans autogenerado) ---
-        // (Este layout es básico, puedes ajustarlo en el diseñador)
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,10 +106,7 @@ public class CrearCuentaFrame extends javax.swing.JFrame {
         pack();
     }
     
-    // --- Lógica de los botones ---
-
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // Simplemente cierra esta ventana sin hacer nada
         this.dispose();
     }                                           
 
@@ -122,15 +115,11 @@ public class CrearCuentaFrame extends javax.swing.JFrame {
         String saldoStr = saldoField.getText();
         double saldo;
 
-        // PRC-27: Programar la validación de entrada (ej. que el saldo sea un número).
-        
-        // Validación de nombre vacío
         if (nombre.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El nombre del cliente no puede estar vacío.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Validación de saldo
         try {
             saldo = Double.parseDouble(saldoStr);
             if (saldo < 0) {
@@ -149,9 +138,8 @@ public class CrearCuentaFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "No se puede ingresar numeros en el nombre");
     return;
 }
-        // Si todas las validaciones pasan, llamamos al Gestor
+   
         try {
-            // Aquí se ejecuta la lógica de PRC-24, 25, 26, 28
             String nuevoId = GestorCuentas.crearNuevaCuenta(nombre, saldo);
             
             JOptionPane.showMessageDialog(this, 
@@ -159,11 +147,9 @@ public class CrearCuentaFrame extends javax.swing.JFrame {
                     "Creación Exitosa", 
                     JOptionPane.INFORMATION_MESSAGE);
             
-            // Cierra la ventana de "Crear Cuenta"
             this.dispose(); 
             
         } catch (Exception e) {
-            // Captura cualquier error del Gestor (ej. límite de 10 cuentas)
             JOptionPane.showMessageDialog(this, 
                     "Error al crear la cuenta:\n" + e.getMessage(), 
                     "Error", 

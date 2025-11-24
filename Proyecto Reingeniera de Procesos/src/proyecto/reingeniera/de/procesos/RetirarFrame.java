@@ -26,8 +26,7 @@ public class RetirarFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    @SuppressWarnings("unchecked")                    
     private void initComponents() {
 
         jLabelTitle = new javax.swing.JLabel();
@@ -43,7 +42,6 @@ public class RetirarFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Realizar Retiro");
 
-        // PRC-38: Diseñar la UI para retirar
         jLabelTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitle.setText("Retirar Dinero");
@@ -53,7 +51,7 @@ public class RetirarFrame extends javax.swing.JFrame {
         buscarBtn.addActionListener(evt -> buscarBtnActionPerformed(evt));
 
         jLabelInfo.setFont(new java.awt.Font("Segoe UI", 2, 12)); 
-        jLabelInfo.setForeground(new java.awt.Color(204, 0, 0)); // Color rojo para diferenciar
+        jLabelInfo.setForeground(new java.awt.Color(204, 0, 0)); 
         jLabelInfo.setText("Ingrese ID para buscar cuenta...");
         jLabelInfo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -67,7 +65,6 @@ public class RetirarFrame extends javax.swing.JFrame {
         cancelarBtn.setText("Cancelar");
         cancelarBtn.addActionListener(evt -> this.dispose());
 
-        // --- Layout ---
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,9 +113,7 @@ public class RetirarFrame extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         pack();
-    }// </editor-fold>                        
-
-    // --- LÓGICA ---
+    }        
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String id = idField.getText().trim();
@@ -143,7 +138,6 @@ public class RetirarFrame extends javax.swing.JFrame {
         String montoStr = montoField.getText().trim();
         
         try {
-            // PRC-52: Validación de entrada (cantidad)
             double monto = Double.parseDouble(montoStr);
             
             if (monto <= 0) {
@@ -151,17 +145,14 @@ public class RetirarFrame extends javax.swing.JFrame {
                 return;
             }
 
-            // Llamada al Gestor (Incluye validación de fondos PRC-39)
             GestorCuentas.retirar(cuentaActual.getId(), monto);
 
-            // PRC-51: Programar el mensaje de 'Retiro exitoso'
             JOptionPane.showMessageDialog(this, "¡Retiro realizado con éxito!\nNuevo Saldo: " + (cuentaActual.getSaldo() - monto), "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese una cantidad numérica válida.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            // Aquí cae el mensaje de "Saldo insuficiente" (PRC-40)
             JOptionPane.showMessageDialog(this, "Error al retirar:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }                                          

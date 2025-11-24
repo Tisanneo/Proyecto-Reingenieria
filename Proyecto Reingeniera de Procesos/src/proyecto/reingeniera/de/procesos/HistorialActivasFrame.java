@@ -5,7 +5,7 @@
 package proyecto.reingeniera.de.procesos;
 
 import java.util.ArrayList;
-import java.util.Collections; // Para invertir la lista (ver las más recientes primero)
+import java.util.Collections; 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,20 +27,17 @@ public class HistorialActivasFrame extends javax.swing.JFrame {
     }
 
     private void inicializarTabla() {
-        // PRC-93: Diseñar la UI de la tabla de historial
-        // Solo necesitamos una columna ancha para la descripción
         String[] columnas = {"Detalle de la Transacción"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Solo lectura
+                return false; 
             }
         };
         tablaHistorial.setModel(modelo);
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         jLabelTitle = new javax.swing.JLabel();
@@ -80,7 +77,6 @@ public class HistorialActivasFrame extends javax.swing.JFrame {
             }
         });
 
-        // --- Layout ---
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,9 +113,7 @@ public class HistorialActivasFrame extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         pack();
-    }// </editor-fold>
-
-    // --- LÓGICA (PRC-85, 86, 91, 109) ---
+    }
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {
         String id = idField.getText().trim();
@@ -128,29 +122,22 @@ public class HistorialActivasFrame extends javax.swing.JFrame {
             return;
         }
 
-        // Limpiamos la tabla
         inicializarTabla();
         DefaultTableModel modelo = (DefaultTableModel) tablaHistorial.getModel();
 
-        // 1. Buscamos la cuenta (PRC-85 y PRC-86 implícito)
         Cuenta cuenta = GestorCuentas.buscarCuenta(id);
 
         if (cuenta != null) {
-            // PRC-85: Obtener transacciones
             ArrayList<String> historialCompleto = cuenta.getHistorial();
             
-            // Creamos una copia para no alterar el original y poder invertirla
             ArrayList<String> historialParaMostrar = new ArrayList<>(historialCompleto);
             
-            // Invertimos para que salgan las más recientes arriba (opcional pero recomendado UX)
             Collections.reverse(historialParaMostrar);
 
-            // PRC-91: Programar el límite de 20 transacciones
             int contador = 0;
             for (String transaccion : historialParaMostrar) {
-                if (contador >= 20) break; // Detenerse al llegar a 20
+                if (contador >= 20) break;
 
-                // PRC-109: Poblar la tabla
                 modelo.addRow(new Object[]{transaccion});
                 contador++;
             }

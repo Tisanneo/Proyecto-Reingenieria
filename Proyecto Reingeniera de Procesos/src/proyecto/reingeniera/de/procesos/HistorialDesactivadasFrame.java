@@ -69,12 +69,10 @@ public class HistorialDesactivadasFrame extends javax.swing.JFrame {
         cerrarBtn.setText("Cerrar");
         cerrarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // CORRECCIÓN DEL ERROR DE DISPOSE
                 HistorialDesactivadasFrame.this.dispose();
             }
         });
 
-        // --- Layout ---
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,8 +111,6 @@ public class HistorialDesactivadasFrame extends javax.swing.JFrame {
         pack();
     }
 
-    // --- LÓGICA (PRC-107, 108, 110, 119) ---
-
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {
         String id = idField.getText().trim();
         if (id.isEmpty()) return;
@@ -122,20 +118,18 @@ public class HistorialDesactivadasFrame extends javax.swing.JFrame {
         inicializarTabla();
         DefaultTableModel modelo = (DefaultTableModel) tablaHistorial.getModel();
 
-        // 1. Buscamos en el archivo de CERRADAS (PRC-108)
         Cuenta cuenta = GestorCuentas.buscarCuentaCerrada(id);
 
         if (cuenta != null) {
             ArrayList<String> historial = new ArrayList<>(cuenta.getHistorial());
-            Collections.reverse(historial); // Las más recientes primero
+            Collections.reverse(historial); 
 
-            // PRC-110: Máximo 10 transacciones
             int limite = 10;
             int contador = 0;
             
             for (String transaccion : historial) {
                 if (contador >= limite) break; 
-                modelo.addRow(new Object[]{transaccion}); // PRC-119
+                modelo.addRow(new Object[]{transaccion}); 
                 contador++;
             }
             
